@@ -3,7 +3,7 @@ import { writable } from 'svelte/store'
 
 export const coordinates = writable({ x: 0, y: 0 })
 
-export function drawPathToPercentWithCallback (
+export function drawPathToPercent (
   node,
   { delay = 0, speed, percent = 0, duration, easing: easing$1 = expoIn }
 ) {

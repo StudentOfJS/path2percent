@@ -17,9 +17,13 @@ _or npm_
 
 A lazy loading component is included. It provides a slot with props, that returns a boolean true if the component is in the viewport. If the browser does not support the IntersectionObserver api, the component will return true immediately. I considered adding a fallback using bounds from getBoundingClientRect, but ultimately opted to save a few kb instead.
 
-## drawPathToPercentWithCallback
+## drawPathToPercent
 
-This function builds on top off the excellent ![draw](https://svelte.dev/docs#draw) animation from svelte. Adding percent and callback props, plus a few small tweaks to allow you to animate along a path to a given percent. Also, maybe you want to animate another svg along that path, so the callback returns the x and y coordinates along the path at the tick interval.
+This function builds on top off the excellent ![draw](https://svelte.dev/docs#draw) animation from svelte. Adding percent plus a few small tweaks to allow you to animate along a path to a given percent.
+
+## coordinates
+
+A subscribable store, providing the coordinates of the the end of the path. This is helpful if you want to animate an svg along a path.
 
 ### Usage 📦
 
@@ -27,14 +31,14 @@ _included example_
 
 ```
 <script>
-  import { drawPathToPercentWithCallback, LazyLoad } from "path2percent";
+  import { drawPathToPercent, coordinates, LazyLoad } from "path2percent";
   export let percent = 50;
   let x = 0;
   let y = 0;
-  const callback = position => {
+  const unsubscribe = coordinates.subscribe(position => {
     x = position.x;
     y = position.y;
-  };
+  });
 </script>
 
 <style>
@@ -57,7 +61,7 @@ _included example_
     <path stroke="#ccc" d="M41 149.5a77 77 0 1 1 117.93 0" fill="none" />
     {#if show}
       <path
-        in:drawPathToPercentWithCallback={{ percent, callback, speed: 0.3 }}
+        in:drawPathToPercent={{ percent, speed: 0.3 }}
         stroke="#0AC0DD"
         d="M41 149.5a77 77 0 1 1 117.93 0"
         fill="none" />
@@ -127,7 +131,6 @@ _defaults_
 - percent _default = 0_
 - delay _default = 0_
 - speed
-- callback _calls with object {x: number, y: number }_
 - duration _default = 800 #if speed is not provided_
 - easing _default = expoIn_
 
