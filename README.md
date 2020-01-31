@@ -1,7 +1,6 @@
 # path2percent
 
 Animate a path to a given percent with path2percent and [svelte](http://svelte.dev).
-Use a callback if you want to use coordinates on tick.
 
 ### Installation 🔧
 
