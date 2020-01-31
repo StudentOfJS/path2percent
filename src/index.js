@@ -1,5 +1,5 @@
-import LazyLoad from './LazyLoad.svelte';
-import { drawPathToPercentWithCallback } from './utils';
-import Example from './example/Example.svelte';
+import LazyLoad from './LazyLoad.svelte'
+import { drawPathToPercentWithCallback, coordinates } from './utils'
+import Example from './example/Example.svelte'
 
-export { LazyLoad, Example, drawPathToPercentWithCallback };
+export { LazyLoad, Example, drawPathToPercentWithCallback, coordinates }

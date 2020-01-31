@@ -1,13 +1,13 @@
 <script>
-  import { drawPathToPercentWithCallback } from "../utils";
+  import { drawPathToPercentWithCallback, coordinates } from "../utils";
   import LazyLoad from "../LazyLoad.svelte";
   export let percent = 50;
   let x = 0;
   let y = 0;
-  const callback = position => {
+  const unsubscribe = coordinates.subscribe(position => {
     x = position.x;
     y = position.y;
-  };
+  });
 </script>
 
 <style>
@@ -30,7 +30,7 @@
     <path stroke="#ccc" d="M41 149.5a77 77 0 1 1 117.93 0" fill="none" />
     {#if show}
       <path
-        in:drawPathToPercentWithCallback={{ percent, callback, speed: 0.3 }}
+        in:drawPathToPercentWithCallback={{ percent, speed: 0.3 }}
         stroke="#0AC0DD"
         d="M41 149.5a77 77 0 1 1 117.93 0"
         fill="none" />

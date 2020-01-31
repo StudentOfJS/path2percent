@@ -1,38 +1,34 @@
-import { expoIn } from 'svelte/easing';
+import { expoIn } from 'svelte/easing'
+import { writable } from 'svelte/store'
 
-export function drawPathToPercentWithCallback(
+export const coordinates = writable({ x: 0, y: 0 })
+
+export function drawPathToPercentWithCallback (
   node,
-  {
-    delay = 0,
-    speed,
-    callback,
-    percent = 0,
-    duration,
-    easing: easing$1 = expoIn,
-  }
+  { delay = 0, speed, percent = 0, duration, easing: easing$1 = expoIn }
 ) {
-  const len = node.getTotalLength();
-  const length = (percent * len) / 100;
-  node.setAttribute('stroke-dasharray', `${length}, ${len}`);
+  const len = node.getTotalLength()
+  const length = (percent * len) / 100
+  node.setAttribute('stroke-dasharray', `${length}, ${len}`)
   if (duration === undefined) {
     if (speed === undefined) {
-      duration = 800;
+      duration = 800
     } else {
-      duration = length / speed;
+      duration = length / speed
     }
   } else if (typeof duration === 'function') {
-    duration = duration(length);
+    duration = duration(length)
   }
-  let parentNode = node;
+  let parentNode = node
   return {
     delay,
     duration,
     easing: easing$1,
     css: (t, u) => {
-      return `stroke-dasharray: ${t * length}, ${len}`;
+      return `stroke-dasharray: ${t * length}, ${len}`
     },
     tick: t => {
-      callback(node.getPointAtLength(t * length));
-    },
-  };
+      coordinates.set(node.getPointAtLength(t * length))
+    }
+  }
 }
