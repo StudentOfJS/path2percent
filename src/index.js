@@ -1,5 +1,5 @@
 import LazyLoad from './LazyLoad.svelte'
-import { drawPathToPercent, coordinates } from './utils'
+import path2percent from './path2percent'
 import Example from './example/Example.svelte'
 
-export { LazyLoad, Example, drawPathToPercent, coordinates }
+export { LazyLoad, Example, path2percent }

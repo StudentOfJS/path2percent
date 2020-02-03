@@ -1,9 +1,10 @@
 <script>
-  import { drawPathToPercent, coordinates } from "../utils";
+  import path2percent from "../path2percent";
   import LazyLoad from "../LazyLoad.svelte";
   export let percent = 50;
   let x = 0;
   let y = 0;
+  let { drawPathToPercent, coordinates } = path2percent();
   const unsubscribe = coordinates.subscribe(position => {
     x = position.x;
     y = position.y;
