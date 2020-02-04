@@ -26,8 +26,6 @@ A subscribable store, providing the coordinates of the the end of the path. This
 
 ### Usage 📦
 
-_included example_
-
 ```
 <script>
   import { path2percent, LazyLoad } from "path2percent";
@@ -77,30 +75,6 @@ _included example_
     {/if}
   </svg>
 </LazyLoad>
-
-```
-
-_run example - scroll down to see animation_
-
-```
-<script>
-  import { Example } from "path2percent";
-</script>
-
-<style>
-  .container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-
-<div class="container" />
-<div class="container">
-  <Example percent={80} delay={50} />
-</div>
 
 ```
 
