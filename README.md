@@ -30,10 +30,11 @@ _included example_
 
 ```
 <script>
-  import { drawPathToPercent, coordinates, LazyLoad } from "path2percent";
+  import { path2percent, LazyLoad } from "path2percent";
   export let percent = 50;
   let x = 0;
   let y = 0;
+  let { coordinates, drawPathToPercent } = path2Percent();
   const unsubscribe = coordinates.subscribe(position => {
     x = position.x;
     y = position.y;
